@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <meta name="description" content="爱游戏 —— 持续更新的游戏资料整合平台，帮你从零散信息中找到清晰脉络。">
+  <title>爱游戏 · 信息索引与产品说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2c3e4f;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrap {
+      max-width: 820px;
+      width: 100%;
+    }
+
+    /* ---------- 卡片基模 ---------- */
+    .card {
+      background: #fffffffa;
+      border-radius: 22px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e5e9ee;
+      padding: 1.8rem 1.6rem;
+      margin-bottom: 1.8rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    /* ---------- hero / 摘要 ---------- */
+    .hero {
+      text-align: center;
+      padding: 2.2rem 1.6rem 1.6rem;
+      background: #f9fbfd;
+    }
+
+    .hero h1 {
+      font-weight: 500;
+      font-size: 2.1rem;
+      letter-spacing: -0.02em;
+      color: #1a2b3a;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .tagline {
+      font-size: 1rem;
+      color: #5b6f80;
+      max-width: 580px;
+      margin: 0 auto;
+      border-bottom: 1px dashed #d9e0e7;
+      padding-bottom: 1.2rem;
+    }
+
+    .hero .summary {
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      color: #354c5e;
+    }
+
+    /* ---------- 特点网格 ---------- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 0.2rem;
+    }
+
+    .feature-item {
+      background: #f7f9fb;
+      border-radius: 18px;
+      padding: 1.2rem 1rem;
+      border: 1px solid #e9edf2;
+    }
+
+    .feature-item h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #1f374b;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-item p {
+      font-size: 0.94rem;
+      color: #3f5669;
+    }
+
+    /* ---------- 使用建议 / 场景 ---------- */
+    .scenario-list {
+      list-style: none;
+      padding: 0.2rem 0;
+    }
+
+    .scenario-list li {
+      position: relative;
+      padding: 0.6rem 0 0.6rem 1.8rem;
+      border-bottom: 1px solid #edf1f5;
+    }
+
+    .scenario-list li::before {
+      content: "○";
+      position: absolute;
+      left: 0;
+      color: #7b95ae;
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .scenario-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* ---------- 可信访问说明 ---------- */
+    .access-note {
+      background: #f6f9fc;
+      border-left: 4px solid #b7ccde;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin: 1rem 0 0.2rem;
+    }
+
+    .access-note p {
+      font-size: 0.95rem;
+    }
+
+    /* ---------- FAQ 摘要 ---------- */
+    .faq-item {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #eaedf2;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1a2f41;
+    }
+
+    .faq-a {
+      color: #435a6d;
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+      padding-left: 0.3rem;
+    }
+
+    /* ---------- 链接 ---------- */
+    a {
+      color: #326482;
+      text-decoration: none;
+      border-bottom: 1px dotted #bccfdf;
+      transition: border 0.15s, color 0.15s;
+    }
+
+    a:hover {
+      color: #154257;
+      border-bottom: 1px solid #154257;
+    }
+
+    /* ---------- 脚注 ---------- */
+    .footer-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b7f90;
+      margin-top: 0.8rem;
+      padding: 1rem 0 0.4rem;
+      border-top: 1px solid #dce3ea;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 580px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+
+      .card {
+        padding: 1.3rem 1rem;
+        border-radius: 18px;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .feature-item {
+        padding: 1rem 0.9rem;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .card {
+        padding: 2.2rem 2.2rem;
+      }
+    }
+
+    /* 小装饰 */
+    .soft-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d6dee7, transparent);
+      margin: 1.4rem 0 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- hero 区域：产品摘要 -->
+    <div class="card hero">
+      <h1>爱游戏 · 资料索引</h1>
+      <div class="tagline">从零散信息到有序脉络 · 一份温和的整理工具</div>
+      <div class="summary">
+        <p>这个站点并非游戏商店或热门集合，而是一处持续搭建的“信息索引”——将游戏相关的机制说明、版本脉络与背景资料按主题组织，方便你在需要时快速定位。<a href="https://web-m-i-game.com.cn">爱游戏</a> 所记录的，是经过筛选与归类的参考内容，适合那些希望更系统地了解某款游戏、某个系列或某种设计思路的人。</p>
+        <p style="margin-top:0.8rem; font-size:0.95rem;">它不强求覆盖全部，但力求每一份条目都具备可溯源的线索与相对清晰的说明。</p>
+      </div>
+    </div>
+
+    <!-- 亮点卡片：三个核心特征 -->
+    <div class="card">
+      <h2 style="font-weight:500; font-size:1.3rem; margin-bottom:1rem;">几个值得留意的特点</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>主题化分类</h3>
+          <p>按游戏系列、机制关键词、版本节点等维度建立目录，避免信息混杂。</p>
+        </div>
+        <div class="feature-item">
+          <h3>精简但保留原文脉络</h3>
+          <p>每条笔记都附有来源参照与简短注释，方便你进一步查阅原始资料。</p>
+        </div>
+        <div class="feature-item">
+          <h3>渐进更新</h3>
+          <p>内容会随资料审阅节奏逐步补充，不追求一次性堆砌，更注重连贯性。</p>
+        </div>
+        <div class="feature-item">
+          <h3>无诱导设计</h3>
+          <p>页面与索引本身不设弹窗、不收集信息，你可以安静地浏览或离开。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 使用建议：切入角度为资料整理与索引 -->
+    <div class="card">
+      <h2 style="font-weight:500; font-size:1.3rem; margin-bottom:0.8rem;">适用场景与建议</h2>
+      <ul class="scenario-list">
+        <li><strong>回顾旧作资料</strong> —— 当你想要重温某款游戏的系统说明或版本历史，这里可能比零散的百科更容易定位。</li>
+        <li><strong>横向比较设计思路</strong> —— 将不同作品对同一机制（如回合制、资源管理）的说明放在一起参考，索引结构会省去反复搜索的精力。</li>
+        <li><strong>补全认知盲区</strong> —— 有些衍生作品或早期资料不易在常规渠道找到连贯介绍，索引提供了另一种入口。</li>
+        <li><strong>随读随停</strong> —— 每一条目都可独立阅读，没有强制性学习路径，合页即止。</li>
+      </ul>
+      <div class="access-note">
+        <p><strong>一点说明：</strong> 该索引侧重资料整理而非攻略指导，不提供下载或修改内容。所有条目均基于公开可查的信息重新组织，若发现疏漏，欢迎基于索引线索自行核对原始出处。</p>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 + 可信访问说明 -->
+    <div class="card">
+      <h2 style="font-weight:500; font-size:1.3rem; margin-bottom:0.8rem;">常见疑问摘要</h2>
+      <div class="faq-item">
+        <div class="faq-q">这些内容会频繁改动吗？</div>
+        <div class="faq-a">更新节奏比较平稳，通常随着资料审阅完成或新条目整理好再发布，不会出现无预警的大幅变动。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">我可以直接引用索引里的信息吗？</div>
+        <div class="faq-a">建议将索引作为线索起点，再回溯到原始来源进行核实。索引本身尽量保持中立转述，但二次引用时仍以第一手资料为准。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">为什么叫“爱游戏”而不是其他名称？</div>
+        <div class="faq-a">“爱”在这里更接近一种整理的用心——认真对待每一份经手的资料，也尊重每一位查阅者自己判断的权利。</div>
+      </div>
+
+      <div class="soft-divider"></div>
+
+      <!-- 嵌入链接的可信说明 -->
+      <div style="font-size:0.95rem; color:#3f5669;">
+        <p>如果你想直接浏览当前已经归类的笔记页面，可以前往 <a href="https://web-m-i-game.com.cn">爱游戏</a> 的主索引目录。那里列出了所有已整理的主题分类与最近更新记录，结构清晰，无任何多余跳转或推广内容。</p>
+        <p style="margin-top:0.5rem;">另外也建议你根据自身兴趣挑选分类进入，而不是一次性浏览全部——索引的目的恰恰在于帮你节省筛选时间。</p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+      一份安静的索引 &middot; 内容保持克制与真实
+    </div>
+  </div>
+</body>
+</html>
