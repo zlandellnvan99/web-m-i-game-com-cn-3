@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leyu · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #fbe9e7 0%, #ffccbc 45%, #ffd7b3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+            line-height: 1.7;
+            color: #2c2b2b;
+        }
+
+        .magazine-wrapper {
+            max-width: 960px;
+            width: 100%;
+            background: rgba(255, 252, 245, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 36px 36px;
+            box-shadow: 0 20px 40px -12px rgba(140, 70, 30, 0.25);
+            padding: 2.5rem 2.2rem 3rem;
+            transition: all 0.2s ease;
+        }
+
+        /* hero banner */
+        .hero-badge {
+            background: linear-gradient(105deg, #d2691e 0%, #e07b39 80%);
+            color: #fff9f0;
+            display: inline-block;
+            padding: 0.4rem 1.6rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 14px rgba(200, 90, 30, 0.15);
+            margin-bottom: 1.2rem;
+            background-size: 200% 200%;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #6b3f1d, #b45a2b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.75rem;
+            max-width: 90%;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #5a3f2f;
+            background: rgba(255, 235, 215, 0.5);
+            backdrop-filter: blur(2px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 48px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            border-left: 4px solid #c97440;
+        }
+
+        /* 卡片区块 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .article-card {
+            background: #fffffffa;
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 8px 20px -6px rgba(160, 80, 30, 0.10);
+            border: 1px solid rgba(255, 230, 200, 0.4);
+            transition: transform 0.15s ease, box-shadow 0.25s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px -10px rgba(140, 70, 20, 0.18);
+            border-color: #e7c29f;
+        }
+
+        .card-label {
+            display: inline-block;
+            background: #f7e5d6;
+            color: #7a4b2a;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-card h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #442b1b;
+            margin-bottom: 0.6rem;
+            border-bottom: 2px dashed #deb887;
+            padding-bottom: 0.3rem;
+            display: inline-block;
+        }
+
+        .article-card p {
+            margin: 0.8rem 0 0.2rem;
+            font-size: 1rem;
+            color: #3f342d;
+        }
+
+        .article-card p + p {
+            margin-top: 0.6rem;
+        }
+
+        .inline-link {
+            color: #b45a2b;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            background: #f7ede4;
+            padding: 0.1rem 0.6rem 0.15rem;
+            transition: background 0.2s, color 0.2s;
+            border: 1px solid #eacab0;
+            white-space: nowrap;
+        }
+
+        .inline-link:hover {
+            background: #d99c72;
+            color: #2b1c12;
+            border-color: #b45a2b;
+        }
+
+        .faq-summary {
+            margin-top: 0.6rem;
+            background: #faf3ea;
+            border-radius: 24px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.95rem;
+            border-left: 3px solid #c97f4a;
+        }
+
+        .faq-summary strong {
+            color: #623e24;
+        }
+
+        /* 访问提醒 + 结尾 */
+        .outro-area {
+            margin-top: 2.8rem;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 245, 230, 0.6);
+            backdrop-filter: blur(3px);
+            border-radius: 60px;
+            text-align: center;
+            border: 1px solid #edd5bd;
+            box-shadow: inset 0 1px 6px rgba(255, 200, 150, 0.2);
+        }
+
+        .outro-area p {
+            font-size: 1.02rem;
+            color: #3f3025;
+            margin: 0.2rem 0;
+        }
+
+        .outro-area .highlight-link {
+            display: inline-block;
+            background: #f3dccb;
+            border-radius: 60px;
+            padding: 0.25rem 1.2rem 0.3rem;
+            margin: 0.4rem 0;
+            border: 1px solid #dbaa81;
+            transition: background 0.2s, transform 0.1s;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .outro-area .highlight-link a {
+            text-decoration: none;
+            color: #4a2e1b;
+            display: inline-block;
+        }
+
+        .outro-area .highlight-link:hover {
+            background: #dbb188;
+            transform: scale(1.02);
+        }
+
+        .foot-note {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #6b5542;
+            border-top: 1px dashed #d9b89b;
+            padding-top: 0.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .magazine-wrapper {
+                padding: 1.8rem 1.2rem 2rem;
+                border-radius: 32px;
+            }
+            .hero-title {
+                font-size: 2rem;
+                max-width: 100%;
+            }
+            .hero-sub {
+                font-size: 0.95rem;
+                padding: 0.4rem 1rem;
+            }
+            .article-card {
+                padding: 1.3rem 1rem;
+            }
+            .outro-area {
+                padding: 1.2rem 1rem;
+                border-radius: 40px;
+            }
+            .card-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-title {
+                font-size: 1.7rem;
+            }
+            .inline-link {
+                white-space: normal;
+                padding: 0.1rem 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="magazine-wrapper">
+    <!-- hero 横幅 -->
+    <div class="hero-badge">✦ 简明指南 · 访问提醒</div>
+    <h1 class="hero-title">leyu · 从了解到进入</h1>
+    <div class="hero-sub">📌 一本以实用为轴心的数字访问备忘</div>
+
+    <!-- 三段自然介绍 + 特点/场景融合 -->
+    <div class="card-grid">
+        <!-- 卡片 1：背景说明 + 承接 -->
+        <div class="article-card">
+            <span class="card-label">📖 背景</span>
+            <h2>为什么需要一份访问指南</h2>
+            <p>在信息碎片时代，许多人初次接触 <a href="https://cnx-leyu.com" class="inline-link">leyu</a> 时，常因入口分散、路径模糊而消耗额外时间。这份指南并非冗长手册，而是筛选后的关键提醒，帮助你在首次浏览时快速建立方向感。</p>
+            <p>无论你关注内容、服务还是工具属性，保持清晰的访问习惯都能减少信息噪声。下文从三个常见场景展开，每一段都围绕实际使用中的真实触点。</p>
+            <div class="faq-summary">
+                <strong>💡 一句话背景：</strong> 理解平台结构，比盲目点击更重要——<a href="https://cnx-leyu.com" class="inline-link">leyu</a> 的布局逻辑与常规站点略有不同，提前阅读能避开多数绕路情况。
+            </div>
+        </div>
+
+        <!-- 卡片 2：第一段介绍 + 特点融合 -->
+        <div class="article-card">
+            <span class="card-label">🗺️ 场景一 · 初访与定位</span>
+            <h2>首页架构与核心模块</h2>
+            <p>当你打开 <a href="https://cnx-leyu.com" class="inline-link">leyu</a> 的主页，首先会看到导航区分为内容入口和工具面板两部分。左侧通常保留快速导航列表，右侧则为动态摘要。建议不急于滚动，先花十秒浏览顶部信息区，那里集中了最常被查询的功能节点。</p>
+            <p>一个实用的习惯是：将当前页面添加到书签栏，并命名为“leyu 总览”。这样后续回访不必重新搜索，也便于对比不同时期的页面变化。部分用户反馈，首次访问时容易忽略页脚的“站点地图”链接——它其实包含了所有细分章节的索引。</p>
+        </div>
+
+        <!-- 卡片 3：第二段介绍 + 注意事项 -->
+        <div class="article-card">
+            <span class="card-label">⚙️ 场景二 · 常用操作与提醒</span>
+            <h2>搜索、筛选与响应节奏</h2>
+            <p>在 <a href="https://cnx-leyu.com" class="inline-link">leyu</a> 内部使用搜索功能时，关键词不宜过短，建议采用“形容词+核心名词”的组合，例如“近期更新 活动”而不是单独一个“活动”。这一经验来自多位长期使用者的总结，能减少无关结果。</p>
+            <p>另外，部分交互面板在移动端与桌面端的布局存在差异：手机浏览器中某些筛选器默认折叠，需要轻触“展开”图标。若发现页面加载后部分区域空白，可尝试刷新一次——这通常是由缓存策略引起的临时现象。</p>
+            <div class="faq-summary">
+                <strong>📎 小提示：</strong> 如果你在页面内遇到说明文字过小的区域，可以使用浏览器缩放（Ctrl + 滚轮）快速调整，<a href="https://cnx-leyu.com" class="inline-link">leyu</a> 的响应式适配支持 80%–200% 的视图缩放而不会错位。
+            </div>
+        </div>
+
+        <!-- 卡片 4：第三段介绍 + 场景/FAQ 摘要（额外变化） -->
+        <div class="article-card">
+            <span class="card-label">🧭 场景三 · 链接与跳转逻辑</span>
+            <h2>避免跳出与保持连贯</h2>
+            <p><a href="https://cnx-leyu.com" class="inline-link">leyu</a> 的页面跳转遵循“同站新窗口”与“外链直接替换”的混合策略。当点击指向站内详情的链接时，默认在当前标签页打开，便于通过浏览器的“后退”按钮返回。而标注了外部来源的链接则会新建标签页，留意地址栏左侧的图标指示可以帮你判断。</p>
+            <p>如果你习惯用鼠标中键或 Ctrl+单击强制在新标签页打开所有链接，这一操作在 <a href="https://cnx-leyu.com" class="inline-link">leyu</a> 中依然完全支持。有经验的用户甚至会预先打开三四个感兴趣的主题页，再逐一阅读，避免反复加载首页。</p>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 + 链接 -->
+    <div class="outro-area">
+        <p>📬 以上内容基于大量使用反馈整理，覆盖了大多数人的访问盲区。</p>
+        <p>若想直接体验最新版界面与内容，可前往</p>
+        <div class="highlight-link">
+            <a href="https://cnx-leyu.com">leyu</a>
+        </div>
+        <p class="foot-note">记得结合实际页面变化灵活调整你的操作习惯 · 祝你浏览顺利</p>
+    </div>
+
+    <!-- 隐形创作种子（仅供变化） -->
+    <!-- 77b76069914e6065 -->
+</div>
+</body>
+</html>
