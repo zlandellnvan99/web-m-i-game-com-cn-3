@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leyu · 轻量导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f5f7;
+      color: #1e2b3c;
+      line-height: 1.6;
+      padding: 0 1.2rem 3rem;
+    }
+
+    .page-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 顶部导航 */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #dce0e5;
+      margin-bottom: 2.8rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 1.5rem;
+      letter-spacing: -0.3px;
+      color: #1f2937;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2d3c4f;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #0077be;
+    }
+
+    /* Hero */
+    .hero {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.8rem 2.5rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e8ecf0;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.75rem;
+      color: #111827;
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 1.05rem;
+      color: #374151;
+    }
+
+    .hero .tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: #eef2f6;
+      color: #1f3a4b;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      border: 1px solid #d7dee5;
+    }
+
+    /* 通用卡片区 */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin: 2.5rem 0 1.5rem;
+      color: #1f2937;
+      border-left: 4px solid #6c8aa3;
+      padding-left: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e2e8ef;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 20, 40, 0.05);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #1e293b;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #3f4c5c;
+    }
+
+    .card .icon-emoji {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* 说明区块 */
+    .note-area {
+      background: #ffffff;
+      border: 1px solid #e0e6ed;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .note-area h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #1f2a3a;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #edf1f6;
+      padding-bottom: 0.9rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1f2a3a;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #4a5a6e;
+      font-size: 0.95rem;
+    }
+
+    .inline-link {
+      color: #1f5b7a;
+      text-decoration: none;
+      border-bottom: 1px dotted #8aaac0;
+      transition: border-bottom 0.15s;
+    }
+
+    .inline-link:hover {
+      border-bottom: 2px solid #1f5b7a;
+    }
+
+    .cta-line {
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      background: #f0f4f9;
+      padding: 0.9rem 1.6rem;
+      border-radius: 60px;
+      display: inline-block;
+      border: 1px solid #d6dfe9;
+    }
+
+    /* 响应式 */
+    @media (max-width: 860px) {
+      .grid-3 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .hero {
+        padding: 1.8rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .note-area {
+        padding: 1.5rem;
+      }
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #6b7a8a;
+      text-align: center;
+      border-top: 1px solid #dce2ea;
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <!-- 导航 -->
+  <nav class="nav">
+    <div class="nav-brand">leyu</div>
+    <ul class="nav-links">
+      <li><a href="#">起点</a></li>
+      <li><a href="#">场景</a></li>
+      <li><a href="#">常见问题</a></li>
+      <li><a href="#">笔记</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero 介绍 -->
+  <div class="hero">
+    <h1>一份轻量的导航式介绍</h1>
+    <p>围绕「<a href="https://site-web-leyu.com" class="inline-link">leyu</a>」这个关键词，我们整理了几个常用的切入场景。没有复杂的层级，只有几块直白的卡片和说明，方便你快速了解它所关联的主题内容。</p>
+    <span class="tag">生活化 · 轻导航 · 结构化</span>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <h2 class="section-title">三个常见场景</h2>
+  <div class="grid-3">
+    <div class="card">
+      <span class="icon-emoji">🌿</span>
+      <h3>日常信息查阅</h3>
+      <p>当你需要快速定位与 leyu 相关的说明、背景或常见用法时，可以把它当作一个轻索引。卡片式分区让浏览更省力，不必在长文中反复查找。</p>
+    </div>
+    <div class="card">
+      <span class="icon-emoji">📋</span>
+      <h3>主题内容整理</h3>
+      <p>从关键词延伸出的片段——比如使用习惯、功能特点或环境说明——都可以归入三个场景里。每个卡片只讲一件事，保持清晰。</p>
+    </div>
+    <div class="card">
+      <span class="icon-emoji">💡</span>
+      <h3>快速参考</h3>
+      <p>不需要从头读到尾，直接扫一眼卡片标题，就能判断哪部分对你有用。适合需要即时获取要点的场合。</p>
+    </div>
+  </div>
+
+  <!-- 常见说明 + FAQ 摘要 -->
+  <div class="note-area">
+    <h2>一些常见说明</h2>
+    <div class="faq-item">
+      <div class="faq-q">Leyu 这个关键词通常用来指什么？</div>
+      <div class="faq-a">它可以代表某一类线上服务、项目代号或内容主题，具体语境下会有不同的侧重点。本页面将它作为一个简洁的锚点，用来组织相关的介绍模块。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">为什么采用卡片和导航结构？</div>
+      <div class="faq-a">我们倾向于把信息拆分成更小的单元，而不是堆砌成长段落。每个卡片承担一个独立的说明任务，这样无论是手机还是电脑上阅读，都更直观。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">页面里的链接指向哪里？</div>
+      <div class="faq-a">正文中出现的 <a href="https://site-web-leyu.com" class="inline-link">leyu</a> 链接指向对应的站点，你可以点进去了解更完整的内容。本页面只做轻量导航，不替代原站。</div>
+    </div>
+    <div class="cta-line">
+      🔗 如果想直接了解主要站点，可以看看 <a href="https://site-web-leyu.com" class="inline-link">leyu</a> 本身的内容结构。
+    </div>
+  </div>
+
+  <!-- 一段补充说明（生活化语气） -->
+  <div style="background: #ffffff; border-radius: 20px; padding: 1.8rem 2rem; border: 1px solid #e2e8ef; margin-bottom: 1.2rem;">
+    <p style="color: #2b3d52; font-size: 1rem;">平时遇到一个不熟悉的关键词，总希望有个人先画一张小地图——哪里是入口，哪里是常见问题，哪里可以找到例子。这个页面想扮演的就是那个「小地图」的角色，用最轻的方式把 <a href="https://site-web-leyu.com" class="inline-link">leyu</a> 附近的内容脉络展示出来。不做过度包装，只求清晰实用。</p>
+  </div>
+
+  <footer>
+    <p>轻量导航 · 内容仅供参考 · 具体信息以原站为准</p>
+  </footer>
+</div>
+</body>
+</html>
